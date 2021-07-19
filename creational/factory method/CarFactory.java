@@ -1,46 +1,54 @@
-public interface Car {
+interface Car {
 
     public String assemble();
 
 }
 
-public class Tesla implements Car {
+class Tesla implements Car {
     public String assemble(){
-        System.out.println("Assembling parts of Tesla...")
-        return "Tesla assembled"
+        System.out.println("Assembling parts of Tesla...");
+        return "Tesla assembled";
     } 
 }
 
-public class Mercedes implements Car {
+class Mercedes implements Car {
     public String assemble(){
-        System.out.println("Assembling parts of Mercedes...")
-        return "Mercedes assembled"
-
-    } 
-}
-
-public class Volswagon implements Car {
-    public String assemble(){
-        System.out.println("Assembling parts of Volswagon...")
-        return "Vols assembled"
+        System.out.println("Assembling parts of Mercedes...");
+        return "Mercedes assembled";
 
     } 
 }
 
+class Volswagon implements Car {
+    public String assemble(){
+        System.out.println("Assembling parts of Volswagon...");
+        return "Vols assembled";
+
+    } 
+}
 
 
-public class CarFactoryMethod {
-    public static Car getAssembler(budget) {
-        if(args.budget > 100000) {
-            return new Tesla()
-        }else if (args.budget > 80000) {
-            return new Mercedes()
-        }else if (args.budget > 70000) {
-            return new Volswagon()  
+
+class CarFactory {
+    public CarFactory(String name){
+        System.out.print("afasdfas");
+    }
+    public static Car getAssembler(int budget) {
+        if(budget > 100000) {
+            return new Tesla();
+        }else if (budget > 80000) {
+            return new Mercedes();
+        }else if (budget > 70000) {
+            return new Volswagon();
         }
+    return null;
+    }
+
+    public static void main(String []args){
+        CarFactory carFactory = new CarFactory("Hmm");
+        Car car = carFactory.getAssembler(100000);
+        System.out.print("car");
     }
 } 
 
 
-carFactory = CarFactoryMethod()
-carFactory.getAssembler(100000)
