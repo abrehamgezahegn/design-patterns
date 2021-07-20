@@ -27,7 +27,7 @@ class Builder(ABC):
     def __init__(self) -> None:
         pass
 
-    @abstractmethod
+    @abstractmethod 
     def set_size(self,size):
         pass
     
