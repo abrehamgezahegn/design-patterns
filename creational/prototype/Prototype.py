@@ -8,7 +8,7 @@ class Person(ABC):
         self.personality = personality
     
     @abstractmethod
-    def clone(self,identifier, **attrs):
+    def clone(self):
         pass
 
 class SalesMan(Person):
@@ -16,9 +16,28 @@ class SalesMan(Person):
         super().__init__(name,personality)
         self.id = uuid()
         self.sales_record = sales_record
+        self.clones = dict()
+
     
     def make_sale():
         print("making sale")
+    
+    def register(self, identifier, obj):
+        self.clones[identifier] = obj
+
+    def unregister(self, identifier):
+        del self.clones[identifier]
+
+    
+    def clone(self, identifier, **attrs):
+        found = self.clones.get(identifier)
+        if not found:
+            raise ValueError(f'Incorrect object identifier:{identifier}')
+        obj = copy.deepcopy(self)
+
+        for key in attrs:
+            setattr(obj, key, attrs[key])
+        return obj
 
 
 class Prototype:
@@ -43,10 +62,8 @@ class Prototype:
 
 def main():
     dwight = SalesMan("Dwight", "Distinct", 140501)
-    prototype = Prototype()
-    prototype.register(dwight.id, dwight)
-
-    dwight_clone_1 = prototype.clone(dwight.id)
+    dwight.register(dwight.id, dwight)
+    dwight_clone_1 = dwight.clone(dwight.id, name="Dwight 2", personality=dwight.personality , sales_record=dwight.sales_record)
 
 
 
