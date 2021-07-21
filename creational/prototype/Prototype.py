@@ -40,26 +40,6 @@ class SalesMan(Person):
         return obj
 
 
-class Prototype:
-    def __init__(self):
-        self.objects = dict()
-
-    def register(self, identifier, obj):
-        self.objects[identifier] = obj
-
-    def unregister(self, identifier):
-        del self.objects[identifier]
-
-    def clone(self, identifier, **attrs):
-        found = self.objects.get(identifier)
-        if not found:
-            raise ValueError(f'Incorrect object identifier:{identifier}')
-        obj = copy.deepcopy(found)
-
-        for key in attrs:
-            setattr(obj, key, attrs[key])
-        return obj
-
 def main():
     dwight = SalesMan("Dwight", "Distinct", 140501)
     dwight.register(dwight.id, dwight)
