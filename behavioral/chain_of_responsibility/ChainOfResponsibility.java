@@ -13,17 +13,18 @@ class OnClick {
 }
 
 class Component implements ComponentWithClickHandler{
-    private static OnClick onClick = null;
+    private OnClick onClick = null;
     private ComponentWithClickHandler nextComponent = null;
-    private static String componentName = null;
+    private String componentName = null;
+    
 
     public void handleClick(){
         if(onClick != null){
-            onClick.action();
+            this.onClick.action();
             System.out.print("Click event handled by: ");
             System.out.println(this.componentName);
         }else if (nextComponent != null) {
-            nextComponent.handleClick();
+            this.nextComponent.handleClick();
         }else {
             System.out.println("Event left unhandled");
         }
@@ -41,7 +42,7 @@ class Component implements ComponentWithClickHandler{
 }
 
 class Div extends Component{
-    private static String divName = "";
+    private String divName = "";
 
     public Div(String name){
         divName = name;
@@ -50,10 +51,10 @@ class Div extends Component{
 }
 
 class Body extends Component {
-    private static String bgColor = "#fff";
+    private String bgColor = "#fff";
 
     public Body(String bgColor){
-        bgColor = bgColor;
+        this.bgColor = bgColor;
     }
 
 }
@@ -63,8 +64,8 @@ class Table extends Component {
     private int columns;
 
     public Table(int rows , int columns){
-        rows = rows;
-        columns  = columns;
+        this.rows = rows;
+        this.columns  = columns;
     }
 }
 
