@@ -1,9 +1,10 @@
 import random
 
 class CarType:
-    def __init__(self,name,acc) -> None:
+    def __init__(self,name,acc, heavyRamConsumingField) -> None:
         self.name = name 
         self.acceleration  = acc
+        self.heavyRamConsumingField = heavyRamConsumingField;
 
     def moveTo(x,y):
         print("Moving car to: ", x, "and ", y)
@@ -25,10 +26,10 @@ class CarTypeFactory:
 
     car_types = {}
 
-    def get_car_type(self, car_type_name,acc):
+    def get_car_type(self, car_type_name,acc,heavyRamConsumingField):
         car_types = CarTypeFactory.car_types
         if car_type_name not in car_types.keys():
-            car_type = CarType(car_type_name,acc)
+            car_type = CarType(car_type_name,acc,heavyRamConsumingField)
             car_types[car_type_name] = car_type
         else:
             car_type = car_types[car_type_name]
