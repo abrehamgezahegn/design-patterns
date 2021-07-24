@@ -47,11 +47,11 @@ class RaceGame:
     def init_race(self):
         for i in range(1,100):
             if i % 2:
-                car_type = CarTypeFactory.get_car_type(CarTypeFactory,"Tesla",  23)
+                car_type = CarTypeFactory.get_car_type(CarTypeFactory,"Tesla",  23,"VERY_LARGE_FIELD")
             elif i % 3:
-                car_type = CarTypeFactory.get_car_type(CarTypeFactory,"Audi",  14)
+                car_type = CarTypeFactory.get_car_type(CarTypeFactory,"Audi",  14,"VERY_LARGE_FIELD_2")
             elif i % 4:
-                car_type = CarTypeFactory.get_car_type(CarTypeFactory, "BMW", 15)
+                car_type = CarTypeFactory.get_car_type(CarTypeFactory, "BMW", 15,"VERY_LARGE_FIELD_3")
             color = self.colors[random.randrange(0,2)]
             car = Car(car_type=car_type,color=color, x=i*32.5 , y=i*43.5)  
             self.cars.append(car)
